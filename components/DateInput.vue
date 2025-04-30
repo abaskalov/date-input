@@ -27,10 +27,6 @@ const valueExternal = defineModel<string>({ required: true });
 const dateFormatInternal = computed<'MM/DD/YYYY' | 'DD/MM/YYYY'>(() => isEnUsLocale.value ? 'MM/DD/YYYY' : 'DD/MM/YYYY');
 const valueInternal = shallowRef<string>('');
 
-
-// initially check if the external value is valid date
-if (!dayjs(valueExternal.value, dateFormatExternal, true).isValid()) valueExternal.value = '';
-
 // watch for changes in value bind to the input
 watch(
   () => valueInternal.value,
