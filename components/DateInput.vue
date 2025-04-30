@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { shallowRef, watch, computed, onMounted } from 'vue';
+import { ref, watch, computed, onMounted } from 'vue';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
@@ -14,10 +14,10 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 // extend dayjs with customParseFormat
 dayjs.extend(customParseFormat);
 
-const isEnUsLocale = shallowRef<boolean>(false);
+const isEnUsLocale = ref<boolean>(false);
 
 // placeholder for the input
-const placeholder = shallowRef<'MM/DD/YYYY' | 'DD/MM/YYYY' | null>(null);
+const placeholder = ref<'MM/DD/YYYY' | 'DD/MM/YYYY' | null>(null);
 
 // external date format and value
 const dateFormatExternal = 'YYYY-MM-DD';
@@ -25,7 +25,7 @@ const valueExternal = defineModel<string>({ required: true });
 
 // internal date format and value
 const dateFormatInternal = computed<'MM/DD/YYYY' | 'DD/MM/YYYY'>(() => isEnUsLocale.value ? 'MM/DD/YYYY' : 'DD/MM/YYYY');
-const valueInternal = shallowRef<string>('');
+const valueInternal = ref<string>('');
 
 // watch for changes in value bind to the input
 watch(
